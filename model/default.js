@@ -8,15 +8,40 @@ canvas.width = w.split('px')[0];
 canvas.height = h.split('px')[0];
 //pegar posição do mouse
 let mouse = {x: 0, y: 0};
-let chao = canvas.height/2+10;
 window.onmousemove = event =>{
     mouse.x = event.clientX;
     mouse.y = event.clientY;
+    console.log(`x:${mouse.x} y:${mouse.y}`);
 }
 //função clear
+    //limites
+    let chao;
+    let dX=0; //posição inicial
+    ////////////
+if(canvas.width<500){
+    chao = canvas.height/3;
+}
+if(canvas.width<=700){
+    chao = canvas.height - canvas.height/1.8;
+}
+if(canvas.width>=701){
+    chao = canvas.height/2;
+    ctx.font = '4vh Arial';
+    ctx.fillText('Saltar: espaço, Girar: X', canvas.width/20, canvas.height/20);
+    ctx.fillText('Setas para se movimentar. Pressione algum botão!', canvas.width/20, canvas.height/10);
+}
 function limpar(){
     ctx.clearRect(0,0,canvas.width, canvas.height);
-    ctx.font = '30px Arial';
-    ctx.fillText('Saltar: espaço, Girar: X', canvas.width/2-80, 30);
-    ctx.fillText('Para começar tente se movimentar usando as setas do teclado', canvas.width/4-80,60);
+    if(canvas.width<500){
+        chao = canvas.height/3;
+    }
+    if(canvas.width<=700){
+        chao = canvas.height - canvas.height/1.8;
+    }
+    if(canvas.width>=701){
+        chao = canvas.height/2;
+        ctx.font = '4vh Arial';
+        ctx.fillText('Saltar: espaço, Girar: X', canvas.width/20, canvas.height/20);
+        ctx.fillText('Setas para se movimentar. Pressione algum botão!', canvas.width/20, canvas.height/10);
+    }
 }

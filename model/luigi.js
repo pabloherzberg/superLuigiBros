@@ -1,4 +1,4 @@
-function Luigi(dX=0, dY=chao){
+function Luigi(dY=chao){
     let sX, sY, sWidth, sHeight, dWidth, dHeight;
     //declaração de posições iniciais
     sX = 234;
@@ -28,8 +28,7 @@ function Luigi(dX=0, dY=chao){
         //limite direita
         if(dX < canvas.width-100){
             dX+=xVelocidade;
-        }
-        
+        }    
         limpar();
         ctx.drawImage(img, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
         registro ='direita';  

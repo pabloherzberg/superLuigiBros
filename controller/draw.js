@@ -30,7 +30,38 @@ controle={
         loop();
     }
 }
-
+touchVertical={
+    left:false,
+    right:false,
+    up:false,
+    down:false,
+    space:false,
+    x:false,
+    alterarStatus: event =>{
+        let status = (event)?true:false;
+        switch(event){
+            case (mouse.x<58 && 511<mouse.y<568)://left
+            controle.left = status;
+            break;
+            case (58<mouse.x<122 && 511<mouse.y<452)://up
+            controle.up = status;
+            break;
+            case (122<mouse.x<172 && 511<mouse.y<568)://right
+            controle.right = status;
+            break;
+            case (58<mouse.x<122 && 568<mouse.y<624)://down
+            controle.down = status;
+            break; 
+            case (256<mouse.x<320 && 565<mouse.y<614 || 215<mouse.x<256 && 517<mouse.y<565)://space
+            controle.space = status;
+            break;
+            case (256<mouse.x<320 && 472<mouse.y<517 || 320<mouse.x<539 && 517<mouse.y<565):
+            controle.x = status;
+            break;
+        };
+        loop();
+    }
+}
 let l = new Luigi();
 l.parar();
 let loop= ()=>{
@@ -59,4 +90,6 @@ let loop= ()=>{
     }
 }
 window.addEventListener('keydown', controle.alterarStatus);
+window.addEventListener('touchstart', touchVertical.alterarStatus);
 window.addEventListener('keyup', controle.alterarStatus);
+window.addEventListener('touchend', touchVertical.alterarStatus);

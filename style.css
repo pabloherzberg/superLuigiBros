@@ -3,6 +3,24 @@ body{
     padding: 0;
 }
 canvas{
-    width: 95vw;
-    height: 95vh;
+    width: 99vw;
+    height: 99vh;
+}
+@media (min-width:601px){
+    canvas{
+        background-size: cover;
+        background-image: url(./model/img/controleDesktop.png);
+    }
+}
+@media (max-width:600px){
+    canvas{
+        background-size: cover;
+        background-image: url(./model/img/controleHorizontal.png);
+    }
+}
+@media (max-width:400px){
+    canvas{
+        background-size: cover;
+        background-image: url(./model/img/controleVertical.png);
+    }
 }
