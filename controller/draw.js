@@ -32,6 +32,7 @@ controle={
 }
 
 let l = new Luigi();
+l.parar();
 let loop= ()=>{
     switch(true){
         case (controle.right):

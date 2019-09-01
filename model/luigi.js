@@ -104,11 +104,11 @@ function Luigi(dX=0, dY=chao){
     this.parar = ()=>{
         limpar();
         aux = dX;
-        if(registro =='direita'){
-            sX = 234;
+        if(registro =='esquerda'){
+            sX = 199;
             sY = 116;
         }else{
-            sX = 199;
+            sX = 234;
             sY = 116;
         }
         ctx.drawImage(img, sX, 116, sWidth, sHeight, dX, dY, dWidth, dHeight);
