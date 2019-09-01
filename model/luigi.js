@@ -83,7 +83,7 @@ function Luigi(dX=0, dY=chao){
         }
         ctx.drawImage(img, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
         //se chegar ao chão        
-        if(dY==300){
+        if(dY==chao){
             sY = 116;
             yVelocidade = 20;  
             clearTimeout(this.pular);
@@ -147,7 +147,7 @@ function Luigi(dX=0, dY=chao){
                  
         ctx.drawImage(img, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
         //se chegar ao chão        
-        if(dY==300){
+        if(dY==chao){
             sY = 116;
             yVelocidade = 20;  
             clearTimeout(this.girar);
