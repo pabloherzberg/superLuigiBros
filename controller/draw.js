@@ -1,22 +1,61 @@
-function controle(event){
-    switch(event.keyCode){
-        case 37: l.caminharEsquerda();
-        break;
-        case 38: l.olharCima();
-        break;
-        case 39: l.caminharDireita();
-        break;
-        case 40: l.abaixar();
-        break; 
-        case 32: l.pular();
-        break;
+controle={
+    left:false,
+    right:false,
+    up:false,
+    down:false,
+    space:false,
+    x:false,
+    alterarStatus: event =>{
+        let status = (event.type =='keydown')?true:false;
+        switch(event.keyCode){
+            case 37://left
+            controle.left = status;
+            break;
+            case 38://up
+            controle.up = status;
+            break;
+            case 39://right
+            controle.right = status;
+            break;
+            case 40://down
+            controle.down = status;
+            break; 
+            case 32://space
+            controle.space = status;
+            break;
+            case 88:
+            controle.x = status;
+            break;
+        };
+        loop();
     }
 }
 
-window.addEventListener('keydown', controle);
-window.addEventListener('keyup', ()=>{
-    l.parar()
-});
-
 let l = new Luigi();
-
+let loop= ()=>{
+    switch(true){
+        case (controle.right):
+            l.caminharDireita();
+            break;
+        case (controle.left):
+            l.caminharEsquerda();
+            break;
+        case (controle.up):
+            l.olharCima();
+            break;
+        case (controle.down):
+            l.abaixar();
+            break;
+        case (controle.space):
+            l.pular();
+            break;
+        case (controle.x):
+            l.girar();
+            break;
+        default:
+            l.parar();
+            break;
+    }
+}
+window.addEventListener('keydown', controle.alterarStatus);
+window.addEventListener('keyup', controle.alterarStatus);

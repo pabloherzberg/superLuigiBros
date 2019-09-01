@@ -7,6 +7,7 @@ function Luigi(dX=0, dY=chao){
     sHeight = 30;
     dWidth = sWidth*2.5;
     dHeight = sHeight*2.5;   
+    xVelocidade = 10;
     yVelocidade = 20;
     let registro;
     //instanciar objeto imagem
@@ -24,10 +25,11 @@ function Luigi(dX=0, dY=chao){
                 sX = 234;
             }
         }
-        //caminhar até o canto da tela
-        if(dX < canvas.width){
-            dX+=10;
+        //limite direita
+        if(dX < canvas.width-100){
+            dX+=xVelocidade;
         }
+        
         limpar();
         ctx.drawImage(img, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
         registro ='direita';  
@@ -53,8 +55,7 @@ function Luigi(dX=0, dY=chao){
         registro = 'esquerda';
         console.log(registro)
     }
-    this.pular = ()=>{
-        console.log(yVelocidade)
+    this.pular = (vX = 3)=>{
         limpar();
         dY -=yVelocidade;
         yVelocidade--;
@@ -63,21 +64,21 @@ function Luigi(dX=0, dY=chao){
             if(registro == 'direita'){             // direita
                 sX = 264;
                 sY = 157;
-                dX+=3;
+                dX+=vX;
             }else{                                  //esquerda
                 sX = 198;
                 sY = 156;
-                dX-=3;
+                dX-=vX;
             }
         }else{              //descendo
             if(registro =='direita'){               //direita
                 sX = 234;
                 sY = 156;
-                dX+=3;
+                dX+=vX;
             }else{                                  //esquerda
                 sX = 168;
                 sY = 157;
-                dX-=3;
+                dX-=vX;
             }             
         }
         ctx.drawImage(img, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
@@ -102,6 +103,7 @@ function Luigi(dX=0, dY=chao){
     }
     this.parar = ()=>{
         limpar();
+        aux = dX;
         if(registro =='direita'){
             sX = 234;
             sY = 116;
@@ -110,7 +112,6 @@ function Luigi(dX=0, dY=chao){
             sY = 116;
         }
         ctx.drawImage(img, sX, 116, sWidth, sHeight, dX, dY, dWidth, dHeight);
-        console.log('parado');
     }
     this.abaixar = ()=>{
         limpar();
@@ -123,4 +124,36 @@ function Luigi(dX=0, dY=chao){
         }
         ctx.drawImage(img, sX, 156, sWidth, sHeight, dX, dY+20, dWidth, dHeight);
     }
+    this.girar = (vX = 1)=>{
+        limpar();
+        dY -= yVelocidade;
+        yVelocidade--;
+        //giro
+           if(sX==234 || sX==199){
+               sX=405;
+           }else{
+                if(sX== 432){ 
+                    sX = 405;
+                    sY = 116;
+                    dX+=vX;
+                }else{
+                    if(sX==405){       
+                        sX = 432;
+                        sY = 116;
+                        dX-=vX;
+                    } 
+                }
+           }
+                 
+        ctx.drawImage(img, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
+        //se chegar ao chão        
+        if(dY==300){
+            sY = 116;
+            yVelocidade = 20;  
+            clearTimeout(this.girar);
+            this.parar();
+        }else{
+            setTimeout(this.girar, 40);
+        }
+    } 
 }
