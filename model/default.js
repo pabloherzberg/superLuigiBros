@@ -16,4 +16,6 @@ window.onmousemove = event =>{
 //função clear
 function limpar(){
     ctx.clearRect(0,0,canvas.width, canvas.height);
+    ctx.font = '30px Arial';
+    ctx.fillText('Saltar: espaço, Girar: X', canvas.width/2-80, 30);
 }
